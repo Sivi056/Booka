@@ -57,6 +57,7 @@ kotlin {
             // Firebase GitLive KMP
             implementation(libs.firebase.firestore)
             implementation(libs.firebase.common)
+            implementation(libs.firebase.auth)
 
             // Add the JSON serialization library so .serializer() works
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
