@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "546608293011",
+    "project_id": "booka-5dad0",
+    "storage_bucket": "booka-5dad0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546608293011:android:6802b32e0e14c359709966",
+        "android_client_info": {
+          "package_name": "com.example.booka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1suYjku9clIydHrcE9xKK48rXi8DjZIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
