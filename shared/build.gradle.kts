@@ -72,3 +72,6 @@ kotlin {
         }
     }
 }
+dependencies {
+    androidMainImplementation(enforcedPlatform(libs.firebase.bom))
+}
