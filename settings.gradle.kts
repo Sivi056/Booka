@@ -1,5 +1,3 @@
-rootProject.name = "Booka"
-
 pluginManagement {
     repositories {
         google()
@@ -16,5 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
+rootProject.name = "Booka"
 include(":androidApp")
 include(":shared")
