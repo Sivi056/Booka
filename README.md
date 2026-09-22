@@ -1,31 +1,39 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+Booka — Local Service Scheduling and Booking App
+Slogan: Book local. Grow local.
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Course: OPSC6312 
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Portfolio of Evidence (PoE) — Part 2: App Prototype Development
 
-### Running the apps
+Project Overview
+Booka is a Kotlin-based mobile application designed to seamlessly connect local service providers (such as hairstylists, nail technicians, makeup artists and photographers) with local clients. The platform simplifies appointment scheduling, service browsing and booking management in one centralised hub.
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+Video Demonstration
+YouTube: https://youtu.be/GZzkzFhPnRA?si=nOJL0PhjRhLD4pgZ 
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+Features
+Authentication and Role-Based Navigation: Secure Sign In and Registration workflows with role distinction powered by Firebase Auth.
 
-### Running tests
+Database Integration: Hosted online database integration for active service items and real-time user session persistence.
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+Dependencies
+Language: Kotlin
 
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
+UI Framework: Jetpack Compose  and Material 3 Design
 
----
+Database: Firebase Authentication & Cloud Firestore
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Architecture: MVVM (Model-View-ViewModel)
+
+CI/CD: GitHub Actions (.github/workflows/build.yml)
+
+Target Emulator / Device: Android (Tested on BlueStacks / Samsung SM-S908E)
+
+Automated Testing & Continuous Integration (CI/CD)
+Automated build and testing workflows are configured via GitHub Actions. Every commit and push to the main branch triggers an automated build check to ensure project compilation and run integrity across environments.
+
+AI Tool Usage Declaration
+Overview & Intent
+During the development of the Booka Android application, Google Gemini was used to assist with error diagnosis.
+
+Debugging Attempt: During final testing, an issue arose where selecting the "Service Provider" role during registration did not correctly route to the provider screen. I initially attempted to resolve this by consulting YouTube video tutorials and online guides; however, this did not resolve the issue in time due to an unexpected crash near the final submission deadline. AI was subsequently used to analyze the AuthScreen.kt recomposition state and offer diagnostic steps.
