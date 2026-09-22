@@ -59,12 +59,10 @@ kotlin {
             implementation(libs.firebase.common)
             implementation(libs.firebase.auth)
 
-            // Add the JSON serialization library so .serializer() works
+            // JSON serialization library
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
         }
         androidMain.dependencies {
-            implementation(libs.compose.uiToolingPreview)
-            implementation(libs.compose.uiTooling)
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
         }
@@ -73,6 +71,7 @@ kotlin {
         }
     }
 }
+
 dependencies {
     androidMainImplementation(enforcedPlatform(libs.firebase.bom))
 }

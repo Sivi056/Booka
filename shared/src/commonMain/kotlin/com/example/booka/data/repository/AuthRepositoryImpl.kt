@@ -33,12 +33,12 @@ class AuthRepositoryImpl : AuthRepository {
             val authResult = auth.createUserWithEmailAndPassword(email, password)
             val firebaseUser = authResult.user
                 ?: return Result.failure(Exception("User creation failed"))
-
+            val normalizedRole = role.lowercase().trim()
             val newUser = User(
                 uid = firebaseUser.uid,
                 email = email,
                 displayName = displayName,
-                role = role
+                role = if (normalizedRole.contains("provider")) "provider" else "client"
             )
 
             // Save user profile & role to Firestore

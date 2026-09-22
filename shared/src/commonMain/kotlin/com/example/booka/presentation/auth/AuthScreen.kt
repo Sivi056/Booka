@@ -1,5 +1,6 @@
 package com.example.booka.presentation.auth
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -101,22 +102,35 @@ fun AuthScreen(
         if (isRegisterTab) {
             Spacer(modifier = Modifier.height(16.dp))
             Text("I am a:", style = MaterialTheme.typography.labelLarge)
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                RadioButton(
-                    selected = selectedRole == "client",
-                    onClick = { selectedRole = "client" }
-                )
-                Text("Client", modifier = Modifier.padding(end = 16.dp))
+                // Client Option
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.clickable { selectedRole = "client" }
+                ) {
+                    RadioButton(
+                        selected = (selectedRole == "client"),
+                        onClick = { selectedRole = "client" }
+                    )
+                    Text("Client", modifier = Modifier.padding(end = 16.dp))
+                }
 
-                RadioButton(
-                    selected = selectedRole == "provider",
-                    onClick = { selectedRole = "provider" }
-                )
-                Text("Service Provider")
+                // Service Provider Option
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.clickable { selectedRole = "provider" }
+                ) {
+                    RadioButton(
+                        selected = (selectedRole == "provider"),
+                        onClick = { selectedRole = "provider" }
+                    )
+                    Text("Service Provider")
+                }
             }
         }
 
