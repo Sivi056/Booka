@@ -25,4 +25,4 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Android App
-        run: ./gradlew :androidApp:assembleDebug -x compileKotlinIosX64 -x compileKotlinIosArm64 -x compileKotlinIosSimulatorArm64 --stacktrace
+        run: ./gradlew :androidApp:assembleDebug --stacktrace
