@@ -7,7 +7,8 @@ data class User(
     val uid: String = "",
     val name: String = "",
     val email: String = "",
-    val role: String = "client"
+    val role: String = "client",
+    val displayName: String = ""
 ) {
     val id: String get() = uid
 }
