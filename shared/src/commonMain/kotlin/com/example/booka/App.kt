@@ -1,49 +1,54 @@
 package com.example.booka
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.resources.painterResource
-
-import booka.shared.generated.resources.Res
-import booka.shared.generated.resources.compose_multiplatform
+import androidx.compose.ui.unit.dp
+import com.example.booka.data.repository.AuthRepositoryImpl
+import com.example.booka.domain.model.User
+import com.example.booka.presentation.auth.AuthScreen
+import com.example.booka.presentation.auth.AuthViewModel
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
+        val authRepository = remember { AuthRepositoryImpl() }
+        val authViewModel = remember { AuthViewModel(authRepository) }
+
+        val currentUser by authRepository.currentUser.collectAsState(initial = null)
+
+        if (currentUser == null) {
+            AuthScreen(
+                viewModel = authViewModel,
+                onAuthSuccess = {
+                    // State automatically updates via currentUser state flow
                 }
-            }
+            )
+        } else {
+            MainDashboardScreen(user = currentUser!!)
         }
+    }
+}
+
+@Composable
+fun MainDashboardScreen(user: User) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("Welcome to Booka, ${user.displayName}!")
+        Text("Role: ${user.role}")
     }
 }
