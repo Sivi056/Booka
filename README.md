@@ -9,7 +9,8 @@ Project Overview
 Booka is a Kotlin-based mobile application designed to seamlessly connect local service providers (such as hairstylists, nail technicians, makeup artists and photographers) with local clients. The platform simplifies appointment scheduling, service browsing and booking management in one centralised hub.
 
 Video Demonstration
-YouTube: https://youtu.be/GZzkzFhPnRA?si=nOJL0PhjRhLD4pgZ 
+Part 2 Prototype YouTube: https://youtu.be/GZzkzFhPnRA?si=nOJL0PhjRhLD4pgZ 
+Part 3 POE YouTube:
 
 Features
 Authentication and Role-Based Navigation: Secure Sign In and Registration workflows with role distinction powered by Firebase Auth.
@@ -34,6 +35,6 @@ Automated build and testing workflows are configured via GitHub Actions. Every c
 
 AI Tool Usage Declaration
 Overview & Intent
-During the development of the Booka Android application, Google Gemini was used to assist with error diagnosis.
+During the development of the Booka Android application, from part 1 all to part 3, Google Gemini was used to assist with error diagnosis.
 
 Debugging Attempt: During final testing, an issue arose where selecting the "Service Provider" role during registration did not correctly route to the provider screen. I initially attempted to resolve this by consulting YouTube video tutorials and online guides; however, this did not resolve the issue in time due to an unexpected crash near the final submission deadline. AI was subsequently used to analyze the AuthScreen.kt recomposition state and offer diagnostic steps.
