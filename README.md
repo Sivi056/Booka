@@ -1,12 +1,12 @@
 Booka — Local Service Scheduling and Booking App
 Slogan: Book local. Grow local.
 
-Course: OPSC6312 
+Course: Open Source Coding (OPSC6312)
 
 Portfolio of Evidence (PoE) — Part 2: App Prototype Development
 
 Project Overview
-Booka is a Kotlin-based mobile application designed to seamlessly connect local service providers (such as hairstylists, nail technicians, makeup artists and photographers) with local clients. The platform simplifies appointment scheduling, service browsing and booking management in one centralised hub.
+As a small hair business owner and a student far away from home, I know that navigating your way and finding new service providers can be a hassle especially when you don't know where to start looking. Booka is the solution for just that, it is a Kotlin-based mobile application designed to seamlessly connect local service providers (such as hairstylists, nail technicians, makeup artists and photographers) with local clients. The platform simplifies appointment scheduling, service browsing and booking management in one centralised hub.
 
 Video Demonstration
 Part 2 Prototype YouTube: https://youtu.be/GZzkzFhPnRA?si=nOJL0PhjRhLD4pgZ 
