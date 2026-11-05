@@ -4,6 +4,7 @@ import com.example.booka.domain.model.User
 import com.example.booka.domain.repository.AuthRepository
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
+import dev.gitlive.firebase.auth.GoogleAuthProvider
 import dev.gitlive.firebase.firestore.firestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -71,5 +72,35 @@ class AuthRepositoryImpl : AuthRepository {
 
     override suspend fun signOut() {
         auth.signOut()
+    }
+
+    override suspend fun signInWithGoogle(idToken: String, accessToken: String?): Result<User> {
+        return try {
+            val credential =
+                GoogleAuthProvider.credential(idToken = idToken, accessToken = accessToken)
+            val authResult = auth.signInWithCredential(credential)
+            val firebaseUser =
+                authResult.user ?: return Result.failure(Exception("Google Sign-In failed"))
+
+            // Check if user already exists in Firestore to preserve their role (Client vs Provider)
+            val existingDoc = firestore.collection("users").document(firebaseUser.uid).get()
+            val user = if (existingDoc.exists) {
+                existingDoc.data(User.serializer())
+            } else {
+                val newUser = User(
+                    uid = firebaseUser.uid,
+                    email = firebaseUser.email ?: "",
+                    displayName = firebaseUser.displayName ?: "Google User",
+                    role = "client"
+                )
+                firestore.collection("users").document(firebaseUser.uid)
+                    .set(User.serializer(), newUser)
+                newUser
+            }
+
+            Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

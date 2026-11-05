@@ -15,13 +15,12 @@ class BookingRepositoryImpl : BookingRepository {
         try {
             val snapshot = db.collection("services").get()
             var services = snapshot.documents.map { doc ->
-                val data = doc.data<Map<String, Any>>()
                 ServiceItem(
                     id = doc.id,
-                    title = data["title"]?.toString() ?: "",
-                    description = data["description"]?.toString() ?: "",
-                    price = data["price"]?.toString()?.toDoubleOrNull() ?: 0.0,
-                    providerId = data["providerId"]?.toString() ?: ""
+                    title = doc.get<String?>("title") ?: "",
+                    description = doc.get<String?>("description") ?: "",
+                    price = doc.get<Double?>("price") ?: 0.0,
+                    providerId = doc.get<String?>("providerId") ?: ""
                 )
             }
 
@@ -29,13 +28,12 @@ class BookingRepositoryImpl : BookingRepository {
                 seedInitialServices()
                 val newSnapshot = db.collection("services").get()
                 services = newSnapshot.documents.map { doc ->
-                    val data = doc.data<Map<String, Any>>()
                     ServiceItem(
                         id = doc.id,
-                        title = data["title"]?.toString() ?: "",
-                        description = data["description"]?.toString() ?: "",
-                        price = data["price"]?.toString()?.toDoubleOrNull() ?: 0.0,
-                        providerId = data["providerId"]?.toString() ?: ""
+                        title = doc.get<String?>("title") ?: "",
+                        description = doc.get<String?>("description") ?: "",
+                        price = doc.get<Double?>("price") ?: 0.0,
+                        providerId = doc.get<String?>("providerId") ?: ""
                     )
                 }
             }
@@ -47,20 +45,18 @@ class BookingRepositoryImpl : BookingRepository {
 
     override fun getBookingsForUser(userId: String, isProvider: Boolean): Flow<List<Booking>> = flow {
         try {
-            val fieldName = if (isProvider) "providerId" else "clientId"
             val snapshot = db.collection("bookings").get()
 
             val bookings = snapshot.documents
                 .map { doc ->
-                    val data = doc.data<Map<String, Any>>()
                     Booking(
                         id = doc.id,
-                        serviceId = data["serviceId"]?.toString() ?: "",
-                        serviceTitle = data["serviceTitle"]?.toString() ?: "",
-                        clientId = data["clientId"]?.toString() ?: "",
-                        providerId = data["providerId"]?.toString() ?: "",
-                        price = data["price"]?.toString()?.toDoubleOrNull() ?: 0.0,
-                        status = data["status"]?.toString() ?: "PENDING"
+                        serviceId = doc.get<String?>("serviceId") ?: "",
+                        serviceTitle = doc.get<String?>("serviceTitle") ?: "",
+                        clientId = doc.get<String?>("clientId") ?: "",
+                        providerId = doc.get<String?>("providerId") ?: "",
+                        price = doc.get<Double?>("price") ?: 0.0,
+                        status = doc.get<String?>("status") ?: "PENDING"
                     )
                 }
                 .filter { booking ->
@@ -111,3 +107,6 @@ class BookingRepositoryImpl : BookingRepository {
         }
     }
 }
+
+
+

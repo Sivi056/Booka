@@ -48,7 +48,7 @@ fun AuthScreen(
             modifier = Modifier.padding(bottom = 32.dp)
         )
 
-        // Tab Selector
+        // This is the Tab Selector.
         TabRow(selectedTabIndex = if (isRegisterTab) 1 else 0) {
             Tab(
                 selected = !isRegisterTab,
@@ -108,7 +108,7 @@ fun AuthScreen(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // Client Option
+                // Client option.
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.clickable { selectedRole = "client" }
@@ -120,7 +120,7 @@ fun AuthScreen(
                     Text("Client", modifier = Modifier.padding(end = 16.dp))
                 }
 
-                // Service Provider Option
+                // Service provider option.
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.clickable { selectedRole = "provider" }
@@ -148,6 +148,7 @@ fun AuthScreen(
             else -> {}
         }
 
+        //primary action button.
         Button(
             onClick = {
                 if (isRegisterTab) {
@@ -159,6 +160,34 @@ fun AuthScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(if (isRegisterTab) "Create Account" else "Sign In")
+        }
+
+      //beginning of Google sign in method.
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            HorizontalDivider(modifier = Modifier.weight(1f))
+            Text(
+                text = "OR",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(horizontal = 8.dp),
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            HorizontalDivider(modifier = Modifier.weight(1f))
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedButton(
+            onClick = {
+                // Calling the Google Sign-In trigger.
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Sign in with Google")
         }
     }
 }

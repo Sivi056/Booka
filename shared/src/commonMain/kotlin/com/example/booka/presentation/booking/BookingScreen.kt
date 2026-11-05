@@ -33,7 +33,8 @@ import com.example.booka.domain.model.User
 @Composable
 fun BookingScreen(
     user: User,
-    viewModel: BookingViewModel
+    viewModel: BookingViewModel,
+    onOpenSettings: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -49,11 +50,21 @@ fun BookingScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(
-            text = if (user.role.equals("provider", ignoreCase = true)) "Incoming Bookings" else "Available Services",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = if (user.role.equals("provider", ignoreCase = true)) "Incoming Bookings" else "Available Services",
+                style = MaterialTheme.typography.headlineMedium
+            )
+            OutlinedButton(onClick = onOpenSettings) {
+                Text("Settings")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         when (val state = uiState) {
             is BookingUiState.Loading -> {
@@ -173,3 +184,5 @@ fun ProviderBookingList(
         }
     }
 }
+
+
