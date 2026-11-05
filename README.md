@@ -3,14 +3,14 @@ Slogan: Book local. Grow local.
 
 Course: Open Source Coding (OPSC6312)
 
-Portfolio of Evidence (PoE) — Part 2: App Prototype Development
+Portfolio of Evidence (PoE) —: Booka App Development
 
 Project Overview
 As a small hair business owner and a student far away from home, I know that navigating your way and finding new service providers can be a hassle especially when you don't know where to start looking. Booka is the solution for just that, it is a Kotlin-based mobile application designed to seamlessly connect local service providers (such as hairstylists, nail technicians, makeup artists and photographers) with local clients. The platform simplifies appointment scheduling, service browsing and booking management in one centralised hub.
 
 Video Demonstration
 Part 2 Prototype YouTube: https://youtu.be/GZzkzFhPnRA?si=nOJL0PhjRhLD4pgZ 
-Part 3 POE YouTube:
+Part 3 POE YouTube: https://youtube.com/shorts/hKVhuF_xgHk?si=6gDrog6NeIG2zpol
 
 Features
 Authentication and Role-Based Navigation: Secure Sign In and Registration workflows with role distinction powered by Firebase Auth.
@@ -32,6 +32,13 @@ Target Emulator / Device: Android (Tested on BlueStacks / Samsung SM-S908E)
 
 Automated Testing & Continuous Integration (CI/CD)
 Automated build and testing workflows are configured via GitHub Actions. Every commit and push to the main branch triggers an automated build check to ensure project compilation and run integrity across environments.
+
+Google Single Sign-On (SSO)
+NoSQL Firestore synchronization
+local push notification dispatching 
+automated testing via GitHub Actions
+multi-language localisation 
+Google Play Store publication readiness (signed APK setup).
 
 AI Tool Usage Declaration
 Overview & Intent
